@@ -24,28 +24,32 @@ def price_track():
     soup = BeautifulSoup(text,'lxml')
 
     find = soup.find("td", class_="a-span12")                          # finds the price field
-    price_ = find.span.text
-    global price
-    price = float(price_[1:])                                           # obtains float value for future comparisions
-    global item_name
-    item_name = soup.find("span", class_="a-size-large").text.strip()    # strip to delete extra spaces
-
-    with open('price_logs.csv', "a") as file:                              # write the data to csv file
-        csv_file = csv.writer(file)
-
-        if os.stat("price_logs.csv").st_size > 0:
-            csv_file.writerow([item_name, datetime.now().strftime("%d/%m/%Y"), datetime.now().strftime("%H:%M:%S"), price])
-        else:
-            csv_file.writerow(['ITEM', 'DATE', 'TIME', 'PRICE'])
-            csv_file.writerow([item_name, datetime.now().strftime("%d/%m/%Y"), datetime.now().strftime("%H:%M:%S"), price])
-
-    # print(item_name)
-    print('$', price)
-
-    if price < 24.97:                                                   # enter the price you desire
-        send_email()
+    if find == None:                                                   # if price is not available
+        print("Price not available")
+        return
     else:
-        print("No price drop \nEmail not sent")
+           price_ = find.span.text
+           global price
+           price = float(price_[1:])                                           # obtains float value for future comparisions
+           global item_name
+           item_name = soup.find("span", class_="a-size-large").text.strip()    # strip to delete extra spaces
+
+           with open('price_logs.csv', "a") as file:                              # write the data to csv file
+               csv_file = csv.writer(file)
+
+               if os.stat("price_logs.csv").st_size > 0:
+                   csv_file.writerow([item_name, datetime.now().strftime("%d/%m/%Y"), datetime.now().strftime("%H:%M:%S"), price])
+               else:
+                   csv_file.writerow(['ITEM', 'DATE', 'TIME', 'PRICE'])
+                   csv_file.writerow([item_name, datetime.now().strftime("%d/%m/%Y"), datetime.now().strftime("%H:%M:%S"), price])
+
+           # print(item_name)
+           print('$', price)
+
+           if price < 24.97:                                                   # enter the price you desire
+               send_email()
+           else:
+               print("No price drop \nEmail not sent")
 
 
 def send_email():
