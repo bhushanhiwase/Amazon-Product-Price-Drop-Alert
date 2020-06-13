@@ -78,5 +78,5 @@ def send_email():
 
 
 while True:
-    price_track()                                               # To check the price after every 12 hours
+    price_track()                                               # To check the price after every 12.00 hours
     time.sleep(43200)
