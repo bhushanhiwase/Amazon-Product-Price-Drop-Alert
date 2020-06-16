@@ -1,5 +1,4 @@
-# Program checks the amazon price and if price drops it an sends email to  client and also notes the prices in csv file
-# after every 12 hrs
+# Program checks the amazon price and if price drops it an sends email to  client and also notes the prices in csv file after every 12 hrs
 
 from bs4 import BeautifulSoup
 import requests
