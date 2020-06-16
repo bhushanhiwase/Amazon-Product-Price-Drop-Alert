@@ -9,9 +9,7 @@ import time
 import csv
 import os
 
-link = 'https://www.amazon.com/Tang-Orange-Pineapple-Powdered-Container/dp/B00L0UKSOC?pf_rd_r=9FHBGK7SJD5QKK569SAS&pf' \
-       '_rd_p=f6fb7221-cd0a-462c-a5cf-719d5bf05a98&pd_rd_r=fdbcf9bc-fb84-40bf-bb1a-f9793f40433d&pd_rd_w=8khDG&pd_rd_' \
-       'wg=FZHrh&ref_=pd_gw_bia_d0'
+link = 'https://www.amazon.com/Tang-Orange-Liq-Conc/dp/B00WVQ1K28/ref=sr_1_7?dchild=1&keywords=tang&qid=1592269909&sr=8-7'
 
 headers = {"User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ''(KHTML, like Gecko) '
                          'Chrome/83.0.4103.97 Safari/537.36'}
@@ -38,10 +36,10 @@ def price_track():
                csv_file = csv.writer(file)
 
                if os.stat("price_logs.csv").st_size > 0:
-                   csv_file.writerow([item_name, datetime.now().strftime("%d/%m/%Y"), datetime.now().strftime("%H:%M:%S"), price])
+                   csv_file.writerow([datetime.now().strftime("%d/%m/%Y"), datetime.now().strftime("%H:%M:%S"), price, item_name])
                else:
-                   csv_file.writerow(['ITEM', 'DATE', 'TIME', 'PRICE'])
-                   csv_file.writerow([item_name, datetime.now().strftime("%d/%m/%Y"), datetime.now().strftime("%H:%M:%S"), price])
+                   csv_file.writerow(['DATE', 'TIME', 'PRICE', 'ITEM'])
+                   csv_file.writerow([datetime.now().strftime("%d/%m/%Y"), datetime.now().strftime("%H:%M:%S"), price, item_name])
 
            # print(item_name)
            print('$', price)
