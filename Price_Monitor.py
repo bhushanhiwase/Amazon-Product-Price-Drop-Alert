@@ -18,7 +18,7 @@ def price_track():
     y = requests.get(link, headers=headers)
     # header : 'User-Agent' is used to scrape the complete HTML script from amazon.com else partial script is recived
     text = y.text
-    soup = BeautifulSoup(text,'lxml')
+    soup = BeautifulSoup(text,'lxml')                                  # instead 'lxml' you cna use 'html.parser' as well
 
     find = soup.find("td", class_="a-span12")                          # finds the price field
     if find == None:                                                   # if price is not available
