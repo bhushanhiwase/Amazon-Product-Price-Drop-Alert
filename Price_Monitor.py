@@ -20,7 +20,7 @@ def price_track():
     text = y.text
     soup = BeautifulSoup(text,'lxml')                                  # instead 'lxml' you can use 'html.parser' as well
 
-    find = soup.find("td", class_="a-span12")                          # finds the price field
+    find = soup.find("td", class_="a-span12")                          # finds the price field, syntax --> results.find('section', class_='card-content')
     if find == None:                                                   # if price is not available
         print("Price not available")
         return
