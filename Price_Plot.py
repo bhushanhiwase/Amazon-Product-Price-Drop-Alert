@@ -4,7 +4,7 @@ y = []
 x = []
 
 with open("price_logs.csv", "r") as file:
-    for i in file:
+    for i in file:                                      # To read all the lines in the file
         data1 = file.read()
         k1 = data1.split("\n")
 
