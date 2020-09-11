@@ -30,7 +30,7 @@ def price_track():
            global item_name
            item_name = soup.find("span", class_="a-size-large").text.strip()    # strip to delete extra spaces
 
-           with open('price_logs.csv', "a") as file:                              # write the data to csv file
+           with open('price_logs.csv', "a") as file:                              # write the data to csv file for plotting
                csv_file = csv.writer(file)
 
                if os.stat("price_logs.csv").st_size > 0:
